@@ -13,4 +13,9 @@ class Exhibition extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function type()
+    {
+        return $this->belongsTo(Type::class, 'type_id');
+    }
 }

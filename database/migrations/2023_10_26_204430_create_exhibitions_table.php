@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('exhibitions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('type_id')->cascadeOnDelete();
+            $table->foreignId('type_id')->constrained()->onDelete('cascade');
             $table->string('title');
             $table->longText('description');
             $table->string('location');

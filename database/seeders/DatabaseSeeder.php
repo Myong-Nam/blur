@@ -17,24 +17,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
+        //exhibition types
         $type_names = ['Exhibition', 'Show', 'Festival', 'Education', 'Experience', 'etc'];
+        $exhibitions = [];
 
+        // Creates exhibition types and exhibitions
         foreach ($type_names as $name) {
             $type = Type::factory()->create(['name' => $name]);
-            $exhibitions = Exhibition::factory(3)
+            $exhibitions_created = Exhibition::factory(3)
                 ->for(User::factory())
                 ->create([
                     'type_id' => $type->id,
                 ]);
-        }
 
+            foreach ($exhibitions_created as $exh) {
+                $exhibitions[] = $exh;
+            }
+        }
+        //Each exhibition has 3 comments
         foreach ($exhibitions as $exhibition) {
             Comment::factory(3)
                 ->for(User::factory())
@@ -42,18 +42,6 @@ class DatabaseSeeder extends Seeder
                     'exhibition_id' => $exhibition->id,
                 ]);
         }
-
-        // $exhibition_type = $types[0];
-
-        // $user = User::factory()->create([
-        //     'name' => 'Test User 2',
-        //     'email' => 'test2@example.com',
-        // ]);
-
-        // $exhibitions = Exhibition::factory(10)->create([
-        //     'user_id' => $user->id,
-        //     'category_id' => $exhibition_type->id,
-        // ]);
 
     }
 }

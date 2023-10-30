@@ -1,3 +1,3 @@
-<span class="font-logo text-lg">
+<span class="font-logo text-xl">
     blur:
 </span>

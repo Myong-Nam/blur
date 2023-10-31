@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
         //exhibition types
         $type_names = ['Exhibition', 'Show', 'Festival', 'Education', 'Experience', 'etc'];
         $exhibitions = [];

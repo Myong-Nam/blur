@@ -12,4 +12,5 @@ class Exhibitions extends Component
         $exhibitions = Exhibition::all();
         return view('livewire.exhibitions', ['exhibitions' => $exhibitions]);
     }
+
 }

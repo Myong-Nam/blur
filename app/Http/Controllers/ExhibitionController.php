@@ -26,11 +26,12 @@ class ExhibitionController extends Controller
             'end_date' => 'nullable|after_or_equal:start_date',
             'tags' => 'required',
             'type_id' => 'required',
-        ]);
 
+        ]);
+        $formFields['views'] = 0;
         $formFields['user_id'] = auth()->id();
         if ($request->hasFile('thumbnail_image')) {
-            $formFields['thumbnail_image'] = $request->file('thumbnail_image')->store('thumbnail_image', 'public');
+            $formFields['thumbnail_image'] = $request->file('thumbnail_image')->store('exhibition_images', 'public');
         }
 
         $newExhibition = Exhibition::create($formFields);

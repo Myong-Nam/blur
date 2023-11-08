@@ -28,7 +28,7 @@ class ExhibitionFactory extends Factory
             'thumbnail_image' => function () {
                 $exhibiton_images = Storage::disk('exhibitionimages')->allFiles();
                 $random_keys = array_rand($exhibiton_images, 1);
-                return $exhibiton_images[$random_keys];
+                return 'exhibition_images/' . $exhibiton_images[$random_keys];
             },
             'views' => 0,
 

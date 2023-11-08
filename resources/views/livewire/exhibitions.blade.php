@@ -9,7 +9,7 @@
         <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <a href="/exhibition/{{$exhibition->id}}">
                 <img class="rounded-t-lg h-96 w-96" 
-                src= {{  asset('storage/exhibition_images/'.$exhibition->thumbnail_image) }}
+                src= {{  asset('storage/'.$exhibition->thumbnail_image) }}
                 alt="" />
             </a>
             <div class="p-5">

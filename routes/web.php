@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\ExhibitionController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Exhibition;
-use App\Models\Type;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +20,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 })->name('index');
+
+Route::get('/welcome', function () {
+    return view('welcome');
+});
 
 Route::get('/clear', function () {
     Artisan::call('cache:clear');
@@ -40,11 +44,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::view('/exhibition/create', 'create', ['types' => Type::all()]);
+Route::get('/exhibition/create', [ExhibitionController::class, 'create'])->name('create');
 
-Route::get('/exhibition/create', function () {
-    return view('create')->with(['types' => Type::all()]);
-});
+Route::post('/exhibition/store', [ExhibitionController::class, 'store'])
+    ->middleware('auth');
 
 Route::get('/exhibition/{exhibition}', function (Exhibition $exhibition) {
 

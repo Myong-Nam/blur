@@ -1,4 +1,3 @@
-
 <x-app-layout>
 <section class="text-gray-700 body-font overflow-hidden bg-white">
     <div class="container px-5 py-24 mx-auto">
@@ -40,10 +39,22 @@
                 <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
               </svg>
             </button> --}}
+
           </div>
 
         </div>
+        
+        <div class="mt-5 w-full text-right">
+          <a href="{{ route('exhibition.edit', $exhibition->id) }}">
+            <button type="button" class="text-purple-700 hover:text-white border border-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">
+              Edit
+            </button>
+          </a>
+        </div>
       </div>
+      </div>
+
     </div>
+    
   </section>
 </x-app-layout>

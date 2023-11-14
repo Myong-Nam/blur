@@ -46,4 +46,5 @@ class ExhibitionController extends Controller
 
         return redirect('/exhibition/' . $newExhibition->id)->with('message', 'Exhibition Created Successfully');
     }
+
 }

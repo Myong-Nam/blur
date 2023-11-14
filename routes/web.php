@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ExhibitionController;
 use App\Http\Controllers\ProfileController;
+use App\Livewire\EditExhibition;
 use App\Models\Exhibition;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -48,6 +49,8 @@ Route::get('/exhibition/create', [ExhibitionController::class, 'create'])->name(
 
 Route::post('/exhibition/store', [ExhibitionController::class, 'store'])
     ->middleware('auth');
+
+Route::get('/exhibition/{exhibitionId}/edit/', EditExhibition::class)->name('exhibition.edit');
 
 Route::get('/exhibition/{exhibition}', function (Exhibition $exhibition) {
 

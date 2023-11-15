@@ -23,7 +23,17 @@ class ExhibitionForm extends Form
     #[Rule('required|integer')]
     public $description;
 
+    #[Rule('nullable')]
     public $thumbnail_image;
+
+    #[Rule('required|date')]
+    public $start_date;
+
+    #[Rule('nullable|after_or_equal:start_date')]
+    public $end_date;
+
+    #[Rule('nullable|image|max:1024')]
+    public $uploaded_thumbnail_image = null;
 
     public function setExhibition(Exhibition $exhibition)
     {
@@ -32,19 +42,22 @@ class ExhibitionForm extends Form
         $this->type_id = $exhibition->type_id;
         $this->description = $exhibition->description;
         $this->thumbnail_image = $exhibition->thumbnail_image;
+        $this->start_date = $exhibition->start_date;
+        $this->end_date = $exhibition->end_date;
     }
 
     public function update()
     {
-        if ($this->thumbnail_image != null) {
-            $image = $this->thumbnail_image->store('exhibition_images');
-            $this->thumbnail_image = $image;
+        if ($this->uploaded_thumbnail_image) {
+            $image = $this->uploaded_thumbnail_image->store('exhibition_images');
             $this->exhibition->thumbnail_image = $image;
         }
 
         $this->exhibition->title = $this->title;
         $this->exhibition->type_id = $this->type_id;
         $this->exhibition->description = $this->description;
+        $this->exhibition->start_date = $this->start_date;
+        $this->exhibition->end_date = $this->end_date;
 
         $this->exhibition->update(
             $this->exhibition->toArray()

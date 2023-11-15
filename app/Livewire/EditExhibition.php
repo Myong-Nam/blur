@@ -18,10 +18,9 @@ class EditExhibition extends Component
     public ExhibitionForm $form;
     public Exhibition $exhibitionId;
 
-    public function updateExhibition(Request $request)
+    public function updateExhibition()
     {
         $this->form->update();
-
     }
 
     #[Layout('layouts.app')]

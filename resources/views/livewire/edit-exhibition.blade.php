@@ -76,25 +76,25 @@
         x-on:livewire-upload-finish="uploading = false"
         x-on:livewire-upload-error="uploading = false"
         x-on:livewire-upload-progress="progress = $event.detail.progress"
-    >
+        >
         @if ($form->uploaded_thumbnail_image)
           <img 
           class="mb-3 lg:w-1/2 w-full object-cover object-center rounded border border-gray-200" 
-          src="{{ $form->uploaded_thumbnail_image->temporaryUrl() }}" >
+          src="{{ $form->uploaded_thumbnail_image->temporaryUrl() }}" />
         @elseif ($form->thumbnail_image != null)
         <img 
           class="mb-3 lg:w-1/2 w-full object-cover object-center rounded border border-gray-200" 
-          src="{{  asset('storage/'.$form->thumbnail_image) }}" >
+          src="{{  asset('storage/'.$form->thumbnail_image) }}" />
         @endif
         <input 
           wire:model="form.uploaded_thumbnail_image"  
           id="form.uploaded_thumbnail_image" 
           name="form.uploaded_thumbnail_image" 
           class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type="file"
-          >
+          />
           <div x-show="uploading">
             <progress max="100" x-bind:value="progress"></progress>
-        </div>
+          </div>
         @error('form.thumbnail_image')
         <x-warning-message :message=$message />      
         @enderror
@@ -102,14 +102,27 @@
 
     {{-- dates --}}
     <div class="mb-6">
-        <label for="start_date" class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">Date</label>
+        <label for="form.start_date" class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">Date</label>
         <div date-rangepicker class="flex items-center">
             <div class="relative">
-                <input value="{{$form->start_date}}" name="start_date" id="start_date" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full pl-2 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500" placeholder="Select date start">
+                <input 
+                wire:model="form.start_date"  
+                value="{{$form->start_date}}" 
+                name="form.start_date" 
+                id="form.start_date" 
+                type="date" 
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full pl-2 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500" placeholder="Select date start"
+                >
             </div>
             <span class="mx-4 text-gray-500">to</span>
             <div class="relative">
-                <input value="{{$form->end_date}}" name="end_date" id="end_date" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full pl-2 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500" placeholder="Select date end">
+                <input 
+                wire:model="form.end_date"  
+                value="{{$form->end_date}}" 
+                name="form.end_date"
+                 id="form.end_date" 
+                 type="date" 
+                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full pl-2 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500" placeholder="Select date end">
             </div>
         </div>
         @error('form.start_date')
@@ -121,22 +134,34 @@
     </div>
 
     {{-- location--}}
-    {{-- <div class="mb-6">
-        <label for="location" class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">Location</label>
-        <input value="{{$exhibition->location}}" type="text" id="location" name="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500" placeholder="Location of the exhibition">
-        @error('location')
+    <div class="mb-6">
+        <label for="form.location" class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">Location</label>
+        <input 
+        wire:model="form.location"  
+        value="{{$form->location}}" 
+        type="text" 
+        id="form.location" 
+        name="form.location" 
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500" placeholder="Location of the exhibition">
+        @error('form.location')
         <x-warning-message :message=$message />
         @enderror
-    </div> --}}
+    </div>
 
     {{-- tags --}}
-     {{-- <div class="mb-6">
+     <div class="mb-6">
         <label for="tags" class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">Tags</label>
-        <input value="{{$exhibition->tags}}" type="text" id="tags" name="tags" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500" placeholder="Comma seperated">
-        @error('tags')
+        <input 
+        wire:model="form.tags" 
+        value="{{$form->tags}}" 
+        type="text" 
+        id="form.tags" 
+        name="form.tags" 
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500" placeholder="Comma seperated">
+        @error('form.tags')
         <x-warning-message :message=$message />
         @enderror
-    </div>  --}}
+    </div> 
 
       <button
       type="submit"

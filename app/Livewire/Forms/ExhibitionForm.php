@@ -35,6 +35,12 @@ class ExhibitionForm extends Form
     #[Rule('nullable|image|max:1024')]
     public $uploaded_thumbnail_image = null;
 
+    #[Rule('required')]
+    public $location;
+
+    #[Rule('required')]
+    public $tags;
+
     public function setExhibition(Exhibition $exhibition)
     {
         $this->exhibition = $exhibition;
@@ -44,6 +50,8 @@ class ExhibitionForm extends Form
         $this->thumbnail_image = $exhibition->thumbnail_image;
         $this->start_date = $exhibition->start_date;
         $this->end_date = $exhibition->end_date;
+        $this->location = $exhibition->location;
+        $this->tags = $exhibition->tags;
     }
 
     public function update()
@@ -58,6 +66,8 @@ class ExhibitionForm extends Form
         $this->exhibition->description = $this->description;
         $this->exhibition->start_date = $this->start_date;
         $this->exhibition->end_date = $this->end_date;
+        $this->exhibition->location = $this->location;
+        $this->exhibition->tags = $this->tags;
 
         $this->exhibition->update(
             $this->exhibition->toArray()

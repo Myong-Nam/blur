@@ -5,19 +5,23 @@ namespace App\Livewire;
 use App\Livewire\Forms\ExhibitionForm;
 use App\Models\Exhibition;
 use App\Models\Type;
+use Illuminate\Http\Request;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class EditExhibition extends Component
 {
+
+    use WithFileUploads;
+
     public ExhibitionForm $form;
     public Exhibition $exhibitionId;
 
-    public function updateExhibition()
+    public function updateExhibition(Request $request)
     {
         $this->form->update();
 
-        return $this->redirect('/exhibition/' . $this->exhibitionId->id);
     }
 
     #[Layout('layouts.app')]

@@ -49,29 +49,41 @@
       @enderror
     </div>
 
-    {{-- Description
+    {{-- Description --}}
     <div class="mb-6">
-      <label for="description" class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">Description</label>
-      <textarea id="description" name="description" rows="4" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500">
-        {{$exhibition->description}}
+      <label for="form.description" class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">Description</label>
+      <textarea
+        wire:model="form.description"  
+        id="form.description" 
+        name="form.description" 
+        rows="4" 
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
+      >
+        {{$form->description}}
       </textarea>
-      @error('description')
+      @error('form.description')
       <x-warning-message :message=$message />      
       @enderror
     </div>
 
     {{-- thumbnail image --}}
-    {{-- <div class="mb-6">
+    <div class="mb-6">
         <label for="thumbnail_image" class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">Poster Image</label>
-        @if ($exhibition->thumbnail_image != null)
-        <img class="mb-3 lg:w-1/2 w-full object-cover object-center rounded border border-gray-200" src="{{  asset('storage/'.$exhibition->thumbnail_image) }}" >
+        @if ($form->thumbnail_image != null)
+        <img 
+          class="mb-3 lg:w-1/2 w-full object-cover object-center rounded border border-gray-200" 
+          src="{{  asset('storage/'.$form->thumbnail_image) }}" >
         @endif
-        <input id="thumbnail_image" name="thumbnail_image" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type="file">
-        {{-- <div class="mt-1 text-sm text-gray-500 dark:text-gray-300">A profile picture is useful to confirm your are logged into your account</div> --}}    
-        {{-- @error('thumbnail_image')
+        <input 
+          wire:model.lazy="form.thumbnail_image"  
+          id="form.thumbnail_image" 
+          name="form.thumbnail_image" 
+          class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type="file">
+        {{-- <div class="mt-1 text-sm text-gray-500 dark:text-gray-300">A profile picture is useful to confirm your are logged into your account</div> --}}
+        @error('form.thumbnail_image')
         <x-warning-message :message=$message />      
         @enderror
-    </div>  --}}
+    </div> 
 
     {{-- dates --}}
     {{-- <div class="mb-6">

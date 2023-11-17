@@ -44,12 +44,21 @@
 
         </div>
         
-        <div class="mt-5 w-full text-right">
+        <div class="mt-5 w-full flex flex-row-reverse">
+          <form method="POST" action="{{ route('exhibition.destroy', $exhibition->id) }}" >
+            @method('DELETE')
+            @csrf
+            <button type="submit" class="text-gray-700 hover:text-white border border-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-400 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-500 dark:focus:ring-gray-900">
+              Delete
+            </button>
+          </form>
+
           <a href="{{ route('exhibition.edit', $exhibition->id) }}">
             <button type="button" class="text-purple-700 hover:text-white border border-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">
               Edit
             </button>
           </a>
+
         </div>
       </div>
       </div>

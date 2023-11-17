@@ -52,6 +52,8 @@ Route::post('/exhibition/store', [ExhibitionController::class, 'store'])
 
 Route::get('/exhibition/{exhibitionId}/edit/', EditExhibition::class)->name('exhibition.edit');
 
+Route::delete('/exhibition/{exhibition}/', [ExhibitionController::class, 'destroy'])->name('exhibition.destroy')->middleware('auth');
+
 Route::get('/exhibition/{exhibition}', function (Exhibition $exhibition) {
 
     if ($exhibition) {

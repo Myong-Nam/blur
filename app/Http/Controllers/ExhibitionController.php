@@ -47,4 +47,15 @@ class ExhibitionController extends Controller
         return redirect('/exhibition/' . $newExhibition->id)->with('message', 'Exhibition Created Successfully');
     }
 
+    public function destroy(Exhibition $exhibition)
+    {
+        //Make sure logged in user is owner
+        if ($exhibition->user_id != auth()->id()) {
+            abort(403, 'Unauthorized Action');
+        }
+
+        $exhibition->delete();
+        return redirect('/')->with('message', 'Exhibition Deleted successfully');
+    }
+
 }

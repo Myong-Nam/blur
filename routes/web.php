@@ -54,6 +54,8 @@ Route::get('/exhibition/{exhibitionId}/edit/', EditExhibition::class)->name('exh
 
 Route::delete('/exhibition/{exhibition}/', [ExhibitionController::class, 'destroy'])->name('exhibition.destroy')->middleware('auth');
 
+Route::get('/myexhibitions/manage', [ExhibitionController::class, 'manage'])->middleware('auth');
+
 Route::get('/exhibition/{exhibition}', function (Exhibition $exhibition) {
 
     if ($exhibition) {

@@ -55,7 +55,12 @@ class ExhibitionController extends Controller
         }
 
         $exhibition->delete();
-        return redirect('/')->with('message', 'Exhibition Deleted successfully');
+        return redirect('/myexhibitions/manage')->with('message', 'Exhibition Deleted successfully');
+    }
+
+    public function manage()
+    {
+        return view('my-exhibitions', ['exhibitions' => auth()->user()->exhibitions()->get()]);
     }
 
 }

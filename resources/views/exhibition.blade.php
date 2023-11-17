@@ -44,6 +44,7 @@
 
         </div>
         
+        @if ($exhibition->user_id === auth()->id())
         <div class="mt-5 w-full flex flex-row-reverse">
           <form method="POST" action="{{ route('exhibition.destroy', $exhibition->id) }}" >
             @method('DELETE')
@@ -58,8 +59,8 @@
               Edit
             </button>
           </a>
-
         </div>
+         @endif
       </div>
       </div>
 

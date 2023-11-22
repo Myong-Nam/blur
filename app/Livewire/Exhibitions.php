@@ -9,7 +9,7 @@ class Exhibitions extends Component
 {
     public function render()
     {
-        $exhibitions = Exhibition::all();
+        $exhibitions = Exhibition::paginate(12);
         return view('livewire.exhibitions', ['exhibitions' => $exhibitions]);
     }
 

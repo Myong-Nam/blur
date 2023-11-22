@@ -46,6 +46,14 @@ class ExhibitionController extends Controller
 
         return redirect('/exhibition/' . $newExhibition->id)->with('message', 'Exhibition Created Successfully');
     }
+    public function show(Exhibition $exhibition)
+    {
+        if ($exhibition) {
+            return view('exhibition', ['exhibition' => $exhibition]);
+        } else {
+            abort('404');
+        }
+    }
 
     public function destroy(Exhibition $exhibition)
     {

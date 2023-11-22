@@ -23,6 +23,9 @@ return new class extends Migration
             $table->string('end_date')->nullable();
             $table->string('tags')->nullable();
             $table->integer('views');
+            $table->string('url')->nullable();
+            $table->string('museum')->nullable();
+            $table->string('address')->nullable();
             $table->timestamps();
         });
     }

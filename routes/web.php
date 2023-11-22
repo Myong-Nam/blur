@@ -3,7 +3,6 @@
 use App\Http\Controllers\ExhibitionController;
 use App\Http\Controllers\ProfileController;
 use App\Livewire\EditExhibition;
-use App\Models\Exhibition;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -56,14 +55,6 @@ Route::delete('/exhibition/{exhibition}/', [ExhibitionController::class, 'destro
 
 Route::get('/myexhibitions/manage', [ExhibitionController::class, 'manage'])->middleware('auth');
 
-Route::get('/exhibition/{exhibition}', function (Exhibition $exhibition) {
-
-    if ($exhibition) {
-        return view('exhibition', ['exhibition' => $exhibition]);
-    } else {
-        abort('404');
-    }
-
-});
+Route::get('/exhibition/{exhibition}', [ExhibitionController::class, 'show']);
 
 require __DIR__ . '/auth.php';

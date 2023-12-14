@@ -1,13 +1,19 @@
 @props(['tagsCsv'])
 
 @php
-    $tags = explode(',', $tagsCsv);    
+    $tagsArray = explode(',', preg_replace('/\s*keywords:\s*/', '', $tagsCsv));
+    $cleanedKeywords = array_map(function($keyword) {
+        return preg_replace('/[\'"]/', '', $keyword);
+    }, $tagsArray);
+    
+    $tags = array_map('strtolower', array_map('trim', $cleanedKeywords));
+
 @endphp
-<ul class="flex">
+<ul>
     @for ($i = 0; $i < 3; $i++)
         @isset($tags[$i])
-        <li class="bg-purple-100 text-purple-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-purple-900 dark:text-purple-300">
-            {{$tags[$i]}}
+        <li class="text-gray-600 text-xs font-medium mr-2 px-2.5">
+            <a class="hover:text-purple-600" href="/?tag={{$tags[$i]}}">#{{$tags[$i]}}</a>
         </li>
         @endisset
     @endfor

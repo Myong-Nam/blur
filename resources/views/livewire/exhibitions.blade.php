@@ -1,3 +1,5 @@
+<div>
+@include('_partials._search')
 
 <!-- component -->
 <div class="flex items-center justify-center">
@@ -64,3 +66,4 @@
       </div>
     </div>
   </div>
+</div>

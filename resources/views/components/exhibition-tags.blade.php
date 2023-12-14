@@ -1,11 +1,13 @@
 @props(['tagsCsv'])
 
 @php
+    #remove string 'keywords'
     $tagsArray = explode(',', preg_replace('/\s*keywords:\s*/', '', $tagsCsv));
+    #remove all the quotes 
     $cleanedKeywords = array_map(function($keyword) {
         return preg_replace('/[\'"]/', '', $keyword);
     }, $tagsArray);
-    
+    #convert into small case and trim the tags
     $tags = array_map('strtolower', array_map('trim', $cleanedKeywords));
 
 @endphp
@@ -18,9 +20,4 @@
         @endisset
     @endfor
 
-    {{-- <li
-        class="bg-black text-white rounded-xl px-3 py-1 mr-2"
-    >
-        <a href="/?tag={{$tag}}">{{$tag}}</a>
-    </li> --}}
 </ul>

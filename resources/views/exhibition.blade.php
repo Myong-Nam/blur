@@ -2,7 +2,13 @@
     <section class="text-gray-700 body-font overflow-hidden bg-white">
         <div class="container px-5 py-24 mx-auto">
           <div class="lg:w-4/5 mx-auto flex flex-wrap">
-            <img class="w-full h-auto object-cover object-center rounded border border-gray-200" src="{{$exhibition->thumbnail_image}}" >
+
+            @php
+              $imageSource = (str_starts_with($exhibition->thumbnail_image, 'https://')) 
+              ? $exhibition->thumbnail_image 
+              : asset('storage/' . $exhibition->thumbnail_image);
+            @endphp
+            <img class="w-full h-auto object-cover object-center rounded border border-gray-200" src="{{  $imageSource  }}" >
             <div class="w-full lg:pl-10 mt-6 ">
     
               <h2 class="text-sm title-font text-gray-500 tracking-widest">{{$exhibition->type->name}}</h2>

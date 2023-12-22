@@ -42,18 +42,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/exhibition/create', [ExhibitionController::class, 'create'])->name('create');
+    Route::get('/exhibition/{exhibitionId}/edit/', EditExhibition::class)->name('exhibition.edit');
+    Route::post('/exhibition/store', [ExhibitionController::class, 'store']);
+    Route::delete('/exhibition/{exhibition}/', [ExhibitionController::class, 'destroy'])->name('exhibition.destroy');
+    Route::get('/myexhibitions/manage', [ExhibitionController::class, 'manage']);
 });
-
-Route::get('/exhibition/create', [ExhibitionController::class, 'create'])->name('create');
-
-Route::post('/exhibition/store', [ExhibitionController::class, 'store'])
-    ->middleware('auth');
-
-Route::get('/exhibition/{exhibitionId}/edit/', EditExhibition::class)->name('exhibition.edit');
-
-Route::delete('/exhibition/{exhibition}/', [ExhibitionController::class, 'destroy'])->name('exhibition.destroy')->middleware('auth');
-
-Route::get('/myexhibitions/manage', [ExhibitionController::class, 'manage'])->middleware('auth');
 
 Route::get('/exhibition/{exhibition}', [ExhibitionController::class, 'show']);
 

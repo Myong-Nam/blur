@@ -10,10 +10,15 @@
 
         <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <a href="/exhibition/{{$exhibition->id}}">
-                <img class="rounded-t-lg h-auto w-96" 
-                src = {{$exhibition->thumbnail_image}}
-                {{-- src= {{  asset('storage/'.$exhibition->thumbnail_image) }} --}}
-                alt="" />
+                @php
+                    $imageSource = (str_starts_with($exhibition->thumbnail_image, 'https://')) 
+                    ? $exhibition->thumbnail_image 
+                    : asset('storage/' . $exhibition->thumbnail_image);
+                @endphp
+
+                 <img class="rounded-t-lg h-auto w-96" 
+                 src= {{  $imageSource  }}
+                 alt="" />
             </a>
             <div class="p-5">
                 <a href="/exhibition/{{$exhibition->id}}">
@@ -33,7 +38,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
                       </svg>
-                      {{$exhibition->museum}}
+                      {{$exhibition->museum}}, {{$exhibition->location}}
                 </p>
                 <p>
                     <x-exhibition-tags :tagsCsv="$exhibition->tags" />

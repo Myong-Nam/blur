@@ -26,9 +26,8 @@ class Exhibitions extends Component
     public function render()
     {
 
-        $now = now();
-        $query = Exhibition::where('start_date', '<', $now)
-            ->where('end_date', '>', $now)
+        $query = Exhibition::where('start_date', '<', now())
+            ->where('end_date', '>', now())
             ->orderBy('created_at');
 
         if ($this->tag !== '') {

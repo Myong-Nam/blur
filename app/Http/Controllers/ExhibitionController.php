@@ -18,6 +18,7 @@ class ExhibitionController extends Controller
 
     public function store(Request $request)
     {
+
         $formFields = $request->validate([
             'title' => 'required',
             'description' => 'required',
@@ -26,6 +27,7 @@ class ExhibitionController extends Controller
             'end_date' => 'nullable|after_or_equal:start_date',
             'tags' => 'required',
             'type_id' => 'required|integer',
+            'museum' => 'required',
 
         ], [
             'title.required' => 'The title field is required',
@@ -35,6 +37,7 @@ class ExhibitionController extends Controller
             'end_date.after_or_equal:start_date' => 'The end date must not be earlier than the start date.',
             'tags.required' => 'The tags field is required',
             'type_id.integer' => 'The category field is required.',
+            'museum' => 'The museum field is required.',
         ]);
         $formFields['views'] = 0;
         $formFields['user_id'] = auth()->id();

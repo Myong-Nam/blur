@@ -72,10 +72,19 @@
             <x-warning-message :message=$message />
             @enderror
         </div>
+
+        {{-- location--}}
+        <div class="mb-6">
+          <label for="museum" class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">Museum</label>
+          <input value="{{old("location")}}" type="text" id="museum" name="museum" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500" placeholder="Museum">
+          @error('museum')
+          <x-warning-message :message=$message />
+          @enderror
+      </div>
     
         {{-- location--}}
         <div class="mb-6">
-            <label for="location" class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">Location</label>
+            <label for="location" class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">City</label>
             <input value="{{old("location")}}" type="text" id="location" name="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500" placeholder="Location of the exhibition">
             @error('location')
             <x-warning-message :message=$message />

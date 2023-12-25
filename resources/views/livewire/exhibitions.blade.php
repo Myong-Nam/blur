@@ -8,7 +8,7 @@
         
         @foreach ($exhibitions as $exhibition)
 
-        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" wire:key={{ $exhibition->id }}>
             <a href="/exhibition/{{$exhibition->id}}">
                 @php
                     $imageSource = (str_starts_with($exhibition->thumbnail_image, 'https://')) 

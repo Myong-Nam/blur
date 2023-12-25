@@ -21,6 +21,7 @@ class EditExhibition extends Component
     public function updateExhibition()
     {
         $this->form->update();
+        
     }
 
     #[Layout('layouts.app')]

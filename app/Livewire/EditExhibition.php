@@ -5,7 +5,6 @@ namespace App\Livewire;
 use App\Livewire\Forms\ExhibitionForm;
 use App\Models\Exhibition;
 use App\Models\Type;
-use Illuminate\Http\Request;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -17,18 +16,22 @@ class EditExhibition extends Component
 
     public ExhibitionForm $form;
     public Exhibition $exhibitionId;
-
-    public function updateExhibition()
-    {
-        $this->form->update();
-        
-    }
+    public $showSuccessMessage = false;
+    public $successMessage = '';
 
     #[Layout('layouts.app')]
     public function mount(Exhibition $exhibitionId)
     {
         $this->exhibitionId = $exhibitionId;
         $this->form->setExhibition($exhibitionId);
+
+    }
+
+    public function updateExhibition()
+    {
+        $this->form->update();
+        $this->successMessage = 'Exhibition updated successfully.';
+        $this->showSuccessMessage = true;
 
     }
 

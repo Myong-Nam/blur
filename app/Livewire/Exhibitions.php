@@ -15,21 +15,23 @@ class Exhibitions extends Component
     #[Url]
     public $search = '';
 
-    #the number of exhibitions to show per page
+    #Number of exhibitions to show per page
     public $perPage = 12;
 
     public function loadMore()
     {
+        // Increase the number of exhibitions to show
         $this->perPage += 12;
     }
 
     public function render()
     {
-
+        // Base query for active exhibitions
         $query = Exhibition::where('start_date', '<', now())
             ->where('end_date', '>', now())
             ->orderBy('created_at');
 
+        // Apply tag or search filter if provided
         if ($this->tag !== '') {
             $query->where('tags', 'like', '%' . $this->tag . '%');
         } elseif ($this->search !== '') {
@@ -44,6 +46,7 @@ class Exhibitions extends Component
             });
         }
 
+        // Paginate the results
         $exhibitions = $query->paginate($this->perPage);
 
         return view('livewire.exhibitions', ['exhibitions' => $exhibitions]);

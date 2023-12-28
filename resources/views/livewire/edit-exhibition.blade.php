@@ -69,7 +69,14 @@
     {{-- thumbnail image --}}
     <div class="mb-6">
         <label for="thumbnail_image" class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">Poster Image</label>
-        
+
+        @php
+          $imageSource = (str_starts_with($form->thumbnail_image, 'https://')) 
+          ? $form->thumbnail_image 
+          : asset('storage/' . $form->thumbnail_image);
+        @endphp
+
+
         <div
         x-data="{ uploading: false, progress: 0 }"
         x-on:livewire-upload-start="uploading = true"
@@ -84,7 +91,7 @@
         @elseif ($form->thumbnail_image != null)
         <img 
           class="mb-3 lg:w-1/2 w-full object-cover object-center rounded border border-gray-200" 
-          src="{{  asset('storage/'.$form->thumbnail_image) }}" />
+          src="{{  $imageSource  }}" />
         @endif
         <input 
           wire:model="form.uploaded_thumbnail_image"  
@@ -172,8 +179,35 @@
     </form>
 
   </div>
+  <div
+  x-data="{ show: @entangle('showSuccessMessage') }"
+  x-show="show"
+  x-transition:enter="transition ease-out duration-300"
+  x-transition:enter-start="opacity-0 transform scale-90"
+  x-transition:enter-end="opacity-100 transform scale-100"
+  x-transition:leave="transition ease-in duration-300"
+  x-transition:leave-start="opacity-100 transform scale-100"
+  x-transition:leave-end="opacity-0 transform scale-90"
+  class="flex items-center p-4 mb-4 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-800 dark:border-green-800"
+  id="alert-border-3"
+  role="alert"
+  style="display: none;"
+  >
+  <div class="ms-3 text-sm font-medium">
+    {{ $successMessage }} You can check <a href="/exhibition/{{$exhibitionId->id}}" class="font-semibold underline hover:no-underline">here</a>.
+  </div>
+  <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700" @click="show = false" aria-label="Close">
+    <span class="sr-only">Dismiss</span>
+    <!-- 닫기 아이콘 -->
+  </button>
+  </div>
     </div>
+
 </section>
+
+
+
+
 
 <script>
   document.querySelector('#form.type_id').addEventListener('change', function(e) {

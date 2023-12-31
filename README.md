@@ -16,7 +16,16 @@ Data Features
 Homepage Features
 ==
 **Dynamic Loading**: Exhibitions are loaded in increments of 12 as the user scrolls, using Livewire for a smooth, uninterrupted browsing experience.
+
 **Real-Time Search**: Instantly displays search results as users type, offering a fast and responsive way to find specific exhibitions.
+
 **Interactive Tags**: Each exhibition card includes ChatGPT-generated tags. Clicking on a tag filters the exhibitions, allowing for easy exploration based on themes or keywords.
 
+Homepage Features
+==
+**Dynamic Loading**: Exhibitions are loaded in increments of 12 as the user scrolls, using Livewire for a smooth, uninterrupted browsing experience.
+
+**Real-Time Search**: Instantly displays search results as users type, offering a fast and responsive way to find specific exhibitions.
+
+**Interactive Tags**: Each exhibition card includes ChatGPT-generated tags. Clicking on a tag filters the exhibitions, allowing for easy exploration based on themes or keywords.
 

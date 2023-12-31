@@ -19,17 +19,27 @@ class ExhibitionController extends Controller
     public function store(ExhibitionFormRequest $request)
     {
 
-        $formFields = $request->validated();
-        $formFields['views'] = 0;
-        $formFields['user_id'] = auth()->id();
+        $validatedData = $request->validated();
+
+        // Set views and user_id directly
+        $validatedData['views'] = 0;
+        $validatedData['user_id'] = auth()->id();
+
+        // Handle file upload
         if ($request->hasFile('thumbnail_image')) {
-            $formFields['thumbnail_image'] = $request->file('thumbnail_image')->store('exhibition_images', 'public');
+            // Consider error handling for file storage
+            $thumbnailPath = $request->file('thumbnail_image')->store('exhibition_images', 'public');
+            if ($thumbnailPath) {
+                $validatedData['thumbnail_image'] = $thumbnailPath;
+            }
         }
 
-        $newExhibition = Exhibition::create($formFields);
+        $newExhibition = Exhibition::create($validatedData);
 
-        return redirect('/exhibition/' . $newExhibition->id)->with('message', 'Exhibition Created Successfully');
+        return redirect()->route('exhibition.showphp', $newExhibition->id)
+            ->with('message', 'Exhibition Created Successfully');
     }
+
     public function show(Exhibition $exhibition)
     {
         if ($exhibition) {

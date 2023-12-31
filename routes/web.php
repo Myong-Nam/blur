@@ -49,6 +49,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/myexhibitions/manage', [ExhibitionController::class, 'manage']);
 });
 
-Route::get('/exhibition/{exhibition}', [ExhibitionController::class, 'show']);
+Route::get('/exhibition/{exhibition}', [ExhibitionController::class, 'show'])->name('exhibition.show');
 
 require __DIR__ . '/auth.php';

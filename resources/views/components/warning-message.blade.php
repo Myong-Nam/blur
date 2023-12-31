@@ -5,6 +5,6 @@
     </svg>
     <span class="sr-only">Info</span>
     <div>
-      <span class="font-medium">{{session('message')}}</span> 
+      <span class="font-medium">{{ $message }}</span> 
     </div>
   </div>

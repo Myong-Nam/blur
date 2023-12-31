@@ -12,10 +12,10 @@
             <label for="type" class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">
               Category
             </label>
-              <select value="{{old("type_id")}}" id="type_id" name="type_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500">
+              <select id="type_id" name="type_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500">
                 <option selected>Choose a category</option>
                 @foreach($types as $type)
-                <option value={{$type->id}}>{{$type->name}}</option>
+                <option value="{{ $type->id }}" {{ (old("type_id") == $type->id ? "selected" : "") }}>{{$type->name}}</option>
                 @endforeach
               </select>
             @error('type_id')

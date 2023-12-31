@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ExhibitionFormRequest;
 use App\Models\Exhibition;
 use App\Models\Type;
-use Illuminate\Http\Request;
 
 class ExhibitionController extends Controller
 {
@@ -16,29 +16,10 @@ class ExhibitionController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(ExhibitionFormRequest $request)
     {
 
-        $formFields = $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'location' => 'required',
-            'start_date' => 'required|date',
-            'end_date' => 'nullable|after_or_equal:start_date',
-            'tags' => 'required',
-            'type_id' => 'required|integer',
-            'museum' => 'required',
-
-        ], [
-            'title.required' => 'The title field is required',
-            'description.required' => 'The description field is required',
-            'location.required' => 'The location field is required',
-            'start_date.required' => 'The start date field is required',
-            'end_date.after_or_equal:start_date' => 'The end date must not be earlier than the start date.',
-            'tags.required' => 'The tags field is required',
-            'type_id.integer' => 'The category field is required.',
-            'museum' => 'The museum field is required.',
-        ]);
+        $formFields = $request->validated();
         $formFields['views'] = 0;
         $formFields['user_id'] = auth()->id();
         if ($request->hasFile('thumbnail_image')) {

@@ -36,7 +36,7 @@ class ExhibitionController extends Controller
 
         $newExhibition = Exhibition::create($validatedData);
 
-        return redirect()->route('exhibition.showphp', $newExhibition->id)
+        return redirect()->route('exhibition.show', $newExhibition->id)
             ->with('message', 'Exhibition Created Successfully');
     }
 

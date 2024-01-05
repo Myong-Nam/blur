@@ -21,6 +21,14 @@ class Comments extends Component
         $this->newComment = '';
     }
 
+    public function deleteComment($commentId)
+    {
+        $comment = Comment::findOrFail($commentId);
+        if (auth()->id() === $comment->user_id || auth()->id() === $comment->exhibition->user_id) {
+            $comment->delete();
+        }
+    }
+
     public function render()
     {
         $comments = Comment::where('exhibition_id', $this->exhibitionId)->get();

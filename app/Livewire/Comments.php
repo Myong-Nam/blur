@@ -9,6 +9,8 @@ class Comments extends Component
 {
     public $exhibitionId;
     public $newComment;
+    public $editingCommentId = null;
+    public $editingCommentBody = '';
 
     public function addComment()
     {
@@ -19,6 +21,23 @@ class Comments extends Component
             'user_id' => auth()->id(),
         ]);
         $this->newComment = '';
+    }
+
+    public function editComment($commentId)
+    {
+        $this->editingCommentId = $commentId;
+        $this->editingCommentBody = Comment::find($commentId)->body;
+    }
+
+    public function updateComment()
+    {
+        $this->validate(['editingCommentBody' => 'required|max:255']);
+
+        $comment = Comment::find($this->editingCommentId);
+        $comment->body = $this->editingCommentBody;
+        $comment->save();
+
+        $this->editingCommentId = null;
     }
 
     public function deleteComment($commentId)

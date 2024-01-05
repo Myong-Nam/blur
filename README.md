@@ -21,11 +21,11 @@ Homepage Features
 
 **Interactive Tags**: Each exhibition card includes ChatGPT-generated tags. Clicking on a tag filters the exhibitions, allowing for easy exploration based on themes or keywords.
 
-Homepage Features
+Create Exhibition Page Features
 ==
-**Dynamic Loading**: Exhibitions are loaded in increments of 12 as the user scrolls, using Livewire for a smooth, uninterrupted browsing experience.
+**Dual Registration Modes**: This application allows for both automated (by python) and manual entry of exhibition data, offering flexibility in how exhibitions are registered.
 
-**Real-Time Search**: Instantly displays search results as users type, offering a fast and responsive way to find specific exhibitions.
+**Form Validation with Custom Error Messages**: Utilizing FormRequest, the page implements rules for data validation and displays custom error messages. In case of errors, previously entered values are retained using the "old()" function, enhancing user experience.
 
-**Interactive Tags**: Each exhibition card includes ChatGPT-generated tags. Clicking on a tag filters the exhibitions, allowing for easy exploration based on themes or keywords.
+**Image Upload Capability**: Users can upload thumbnail images for exhibitions. The code handles potential errors during file storage and updates the database with the image path.
 

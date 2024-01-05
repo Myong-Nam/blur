@@ -29,3 +29,8 @@ Create Exhibition Page Features
 
 **Image Upload Capability**: Users can upload thumbnail images for exhibitions. The code handles potential errors during file storage and updates the database with the image path.
 
+Show a single Exhibition Page Features
+==
+**Detailed Exhibition Information**: This page provides in-depth details about the exhibition, including descriptions, dates, and location, offering visitors a thorough understanding of the event.
+
+**Comment Section for Members (Livewire)**: Only registered and logged-in members can access the comment feature. It's powered by Livewire, allowing for real-time interaction. Users can post, edit, and delete their comment

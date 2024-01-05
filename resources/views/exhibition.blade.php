@@ -70,6 +70,6 @@
           </div>
     
         </div>
-        
+        <livewire:comments :exhibitionId="$exhibition->id" />
       </section>
     </x-app-layout>

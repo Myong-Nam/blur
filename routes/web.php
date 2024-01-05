@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/exhibition/{exhibitionId}/edit/', EditExhibition::class)->name('exhibition.edit');
     Route::post('/exhibition/store', [ExhibitionController::class, 'store']);
     Route::delete('/exhibition/{exhibition}/', [ExhibitionController::class, 'destroy'])->name('exhibition.destroy');
-    Route::get('/myexhibitions/manage', [ExhibitionController::class, 'manage']);
+    Route::get('/myexhibitions/manage', [ExhibitionController::class, 'manage'])->name('exhibition.manage');;
 });
 
 Route::get('/exhibition/{exhibition}', [ExhibitionController::class, 'show'])->name('exhibition.show');

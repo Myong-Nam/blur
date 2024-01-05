@@ -42,11 +42,13 @@ class ExhibitionController extends Controller
 
     public function show(Exhibition $exhibition)
     {
-        if ($exhibition) {
-            return view('exhibition', ['exhibition' => $exhibition]);
-        } else {
-            abort('404');
-        }
+        // add more view
+        $exhibition->views += 1;
+
+        // save in db
+        $exhibition->save();
+
+        return view('exhibition', ['exhibition' => $exhibition]);
     }
 
     public function destroy(Exhibition $exhibition)

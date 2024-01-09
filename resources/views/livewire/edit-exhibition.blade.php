@@ -183,7 +183,8 @@
 
   </div>
   <div
-  x-data="{ show: @entangle('showSuccessMessage') }"
+  x-data="{ show: @entangle('showSuccessMessage'), init() { this.$watch('show', value => { if (value) setTimeout(() => this.show = false, 2500); }); }}"
+  x-init="init"
   x-show="show"
   x-transition:enter="transition ease-out duration-300"
   x-transition:enter-start="opacity-0 transform scale-90"

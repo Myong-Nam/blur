@@ -40,3 +40,9 @@ Edit a Exhibition Page Features
 **Real-Time Field Validation with Livewire**: Implements real-time validation for form fields using Livewire, displaying instant warning messages for any incorrect inputs.
 
 **Success Message and Link Display with AlpineJS**: On successful update, AlpineJS shows a success message and provides a direct link to the updated exhibition, enhancing user experience.
+
+Edit a Exhibition Page Features
+==
+**Exhibition Overview**: Displays a table listing the user's created exhibitions, providing essential information like titles, dates, and locations at a glance.
+
+**Direct Management**: Offers options to edit or delete exhibitions directly from the table, facilitating easy and efficient management of the user's entries.

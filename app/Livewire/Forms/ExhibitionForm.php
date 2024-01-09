@@ -15,21 +15,24 @@ class ExhibitionForm extends Form
     public $exhibition;
 
     #[Rule('required')]
+    #[Rule('max:255', message: 'The title may not be greater than 255 characters')]
     public $title = '';
 
-    #[Rule('required|integer')]
+    #[Rule('required', message: 'The category field is required')]
     public $type_id;
 
-    #[Rule('required|integer')]
+    #[Rule('required')]
+    #[Rule('min:10', message: 'The description must be at least 10 characters')]
     public $description;
 
     #[Rule('nullable')]
     public $thumbnail_image;
 
-    #[Rule('required|date')]
+    #[Rule('required', message: 'The start date field is required')]
     public $start_date;
 
-    #[Rule('nullable|after_or_equal:start_date')]
+    #[Rule('nullable')]
+    #[Rule('after_or_equal:start_date', message: 'The end date must not be earlier than the start date')]
     public $end_date;
 
     #[Rule('nullable|image|max:1024')]
@@ -60,7 +63,7 @@ class ExhibitionForm extends Form
             $image = $this->uploaded_thumbnail_image->store('exhibition_images');
             $this->exhibition->thumbnail_image = $image;
         }
-
+        unset($this->uploaded_thumbnail_image);
         $this->exhibition->title = $this->title;
         $this->exhibition->type_id = $this->type_id;
         $this->exhibition->description = $this->description;

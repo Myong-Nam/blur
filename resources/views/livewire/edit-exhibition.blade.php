@@ -9,15 +9,18 @@
     @csrf
     {{-- Category --}}
     <div class="mb-6">
-        <label for="form.type_id" class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">
+        <label 
+          for="form.type_id" 
+          class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white"
+          >
           Category
         </label>
           <select 
             id="form.type_id" 
             name="form.type_id"
-            wire:model="form.type_id"
+            wire:model.live="form.type_id"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500">
-            <option>Choose a category</option>
+            <option value="">Choose a category</option>
             @foreach($types as $type)
             @if ($type->id === $form->type_id)
             <option value={{$type->id}} selected>{{$type->name}}</option>
@@ -37,7 +40,7 @@
       <label for="form.title" class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">Title</label>
       <input 
         value="{{$form->title}}" 
-        wire:model="form.title" 
+        wire:model.live="form.title" 
         type="text" 
         id="form.title" 
         name="title" 
@@ -53,7 +56,7 @@
     <div class="mb-6">
       <label for="form.description" class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">Description</label>
       <textarea
-        wire:model="form.description"  
+        wire:model.live="form.description"  
         id="form.description" 
         name="form.description" 
         rows="4" 
@@ -113,7 +116,7 @@
         <div date-rangepicker class="flex items-center">
             <div class="relative">
                 <input 
-                wire:model="form.start_date"  
+                wire:model.live="form.start_date"  
                 value="{{$form->start_date}}" 
                 name="form.start_date" 
                 id="form.start_date" 
@@ -124,7 +127,7 @@
             <span class="mx-4 text-gray-500">to</span>
             <div class="relative">
                 <input 
-                wire:model="form.end_date"  
+                wire:model.live="form.end_date"  
                 value="{{$form->end_date}}" 
                 name="form.end_date"
                  id="form.end_date" 
@@ -144,7 +147,7 @@
     <div class="mb-6">
         <label for="form.location" class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">Location</label>
         <input 
-        wire:model="form.location"  
+        wire:model.live="form.location"  
         value="{{$form->location}}" 
         type="text" 
         id="form.location" 
@@ -159,7 +162,7 @@
      <div class="mb-6">
         <label for="tags" class="block mb-2 text-sm font-semibold text-gray-900 dark:text-white">Tags</label>
         <input 
-        wire:model="form.tags" 
+        wire:model.live="form.tags" 
         value="{{$form->tags}}" 
         type="text" 
         id="form.tags" 

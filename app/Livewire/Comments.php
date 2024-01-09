@@ -23,12 +23,14 @@ class Comments extends Component
         $this->newComment = '';
     }
 
+    // Prepare a comment for editing
     public function editComment($commentId)
     {
         $this->editingCommentId = $commentId;
         $this->editingCommentBody = Comment::find($commentId)->body;
     }
 
+    // Update the edited comment
     public function updateComment()
     {
         $this->validate(['editingCommentBody' => 'required|max:255']);

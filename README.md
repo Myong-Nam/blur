@@ -34,3 +34,9 @@ Show a single Exhibition Page Features
 **Detailed Exhibition Information**: This page provides in-depth details about the exhibition, including descriptions, dates, and location, offering visitors a thorough understanding of the event.
 
 **Comment Section for Members (Livewire)**: Only registered and logged-in members can access the comment feature. It's powered by Livewire, allowing for real-time interaction. Users can post, edit, and delete their comment
+
+Edit a Exhibition Page Features
+==
+**Real-Time Field Validation with Livewire**: Implements real-time validation for form fields using Livewire, displaying instant warning messages for any incorrect inputs.
+
+**Success Message and Link Display with AlpineJS**: On successful update, AlpineJS shows a success message and provides a direct link to the updated exhibition, enhancing user experience.

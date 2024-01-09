@@ -27,22 +27,26 @@ class EditExhibition extends Component
 
     }
 
+    // Method to handle the exhibition update process
     public function updateExhibition()
     {
         $validatedData = $this->form->validate();
-        // 파일 업로드 처리
-        if (array_key_exists('uploaded_thumbnail_image', $validatedData) && $validatedData['uploaded_thumbnail_image']) {
-            $imagePath = $validatedData['uploaded_thumbnail_image']->store('exhibition_images');
-            $this->exhibitionId->thumbnail_image = $imagePath;
-        }
-
-        // 데이터베이스 업데이트를 위해 uploaded_thumbnail_image 필드 제거
-        unset($validatedData['uploaded_thumbnail_image']);
-
+        $this->handleFileUpload($validatedData);
         $this->exhibitionId->update($validatedData);
         $this->successMessage = 'Exhibition updated successfully.';
         $this->showSuccessMessage = true;
 
+    }
+
+    // Method to handle file upload logic
+    //Pass $validatedData by reference to modify the original array directly within this function
+    private function handleFileUpload(&$validatedData)
+    {
+        if (array_key_exists('uploaded_thumbnail_image', $validatedData) && $validatedData['uploaded_thumbnail_image']) {
+            $imagePath = $validatedData['uploaded_thumbnail_image']->store('exhibition_images');
+            $this->exhibition->thumbnail_image = $imagePath;
+        }
+        unset($validatedData['uploaded_thumbnail_image']);
     }
 
     public function render()
